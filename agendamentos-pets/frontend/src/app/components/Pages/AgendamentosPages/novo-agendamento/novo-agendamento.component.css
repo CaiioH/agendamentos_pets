@@ -1,0 +1,110 @@
+.container-maior{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* border: 1px solid red; */
+    padding: 20px;
+}
+
+.container-formulario {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    padding: 20px;
+    background: linear-gradient(to top, #5B5CDE, #985bde, #9f5bde, #8d5bde);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    
+}
+
+.container-titulo span {
+    color: #DB5BDE;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5%;
+    border: none;
+    padding: 5px 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+select, textarea, input[type="datetime-local"] { 
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #5B5CDE;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    resize: none; /* ❌ Impede o redimensionamento */
+
+}
+
+select:focus, input[type="date"]:focus {
+    outline: none;
+    border-color: #DB5BDE;
+    box-shadow: 0 0 5px rgba(219, 91, 222, 0.5);
+}
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.btn-enviar, .btn-cancelar {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-enviar {
+    background-color: #16b924;
+    color: white;
+}
+
+.btn-enviar:hover {
+    background-color: #DB5BDE;
+    transform: scale(1.05);
+}
+
+.btn-cancelar {
+    background-color: #DE5B95;
+    color: white;
+}
+
+.btn-cancelar:hover {
+    background-color: #B05BDE;
+    transform: scale(1.05);
+}
+
+/* Borda vermelha nos campos inválidos */
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+    border: 2px solid #ff4d4d;
+    background-color: #ffe6e6;
+}
+
+/* Borda verde para campos válidos */
+input.ng-valid,
+select.ng-valid {
+    border: 2px solid #4CAF50;
+    background-color: #e6ffe6;
+}
+
+

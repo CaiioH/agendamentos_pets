@@ -1,0 +1,10 @@
+<button class="menu-toggle" (click)="toggleMenu()">
+  <mat-icon class="menu-icon">menu</mat-icon>
+</button>
+<nav class="menuNav" [class.menu-open]="menuAberto">
+  <ul class="menu">
+    <li><button class="itemMenu"  (click)="navigate('/home')"><mat-icon>home</mat-icon></button></li>
+    <li><button class="itemMenu" (click)="navigate('/pets')"><mat-icon>pets</mat-icon></button></li>
+    <li><button class="itemMenu" (click)="navigate('/agendamentos')"><mat-icon>calendar_month</mat-icon></button></li>
+  </ul>
+</nav>

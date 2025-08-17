@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "537a2ff1-2bbf-4b7f-914a-c54cccbaf155",
+		"name": "ThePetApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "35058009"
+	},
+	"item": [
+		{
+			"name": "Requisições de Pet's",
+			"item": [
+				{
+					"name": "Listar todos os Pet's",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}pet/ListarTodosPets",
+						"description": "Retorna uma lista com todos os pets no banco de dados, incluindo suas informações"
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Novo Pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tutor\": \"string\",\r\n  \"emailTutor\": \"string\",\r\n  \"nome\": \"string\",\r\n  \"cor\": \"string\",\r\n  \"sexo\": \"string\",\r\n  \"idade\": \"string\",\r\n  \"especie\": \"string\",\r\n  \"nomeRaca\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}Pet/CriarPet",
+						"description": "Cria um Pet de acordo com a Espécie e Raça."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Pet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tutor\": \"string\",\r\n  \"emailTutor\": \"string\",\r\n  \"nome\": \"string\",\r\n  \"cor\": \"string\",\r\n  \"sexo\": \"string\",\r\n  \"idade\": \"string\",\r\n  \"especie\": \"string\",\r\n  \"nomeRaca\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}Pet/AtualizarPet/?id=24",
+							"host": [
+								"{{url}}Pet"
+							],
+							"path": [
+								"AtualizarPet",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "24",
+									"description": "Altere o VALUE"
+								}
+							]
+						},
+						"description": "Atualiza as informações do Pet de acordo com o Id passado"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Pets por Espécie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}Pet/ListarPetsPorEspecie/?especie=Gato",
+							"host": [
+								"{{url}}Pet"
+							],
+							"path": [
+								"ListarPetsPorEspecie",
+								""
+							],
+							"query": [
+								{
+									"key": "especie",
+									"value": "Gato",
+									"description": "Alterne o VALUE entre Gato e Cachorro"
+								}
+							]
+						},
+						"description": "Retorna todos os Pets e suas informações, de acordo com a Espécie"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Pets por Raça",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}Pet/ListarPetsPorRaca/?raca=Shih Tzu",
+							"host": [
+								"{{url}}Pet"
+							],
+							"path": [
+								"ListarPetsPorRaca",
+								""
+							],
+							"query": [
+								{
+									"key": "raca",
+									"value": "Shih Tzu",
+									"description": "Altere o Value para o nome da raça "
+								}
+							]
+						},
+						"description": "Retorna todos os Pets e suas informações, de acordo com a Raça."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Pet por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}Pet/BuscarPetPorId/?id=2",
+							"host": [
+								"{{url}}Pet"
+							],
+							"path": [
+								"BuscarPetPorId",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2",
+									"description": "altere o VALUE"
+								}
+							]
+						},
+						"description": "Retorna informações do Pet"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Pet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}Pet/DeletarPet/?id=21",
+							"host": [
+								"{{url}}Pet"
+							],
+							"path": [
+								"DeletarPet",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "21",
+									"description": "Altere o VALUE"
+								}
+							]
+						},
+						"description": "StartFragmentRemove o pet e suas informações do banco de dados.EndFragment"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Requisições de Raças",
+			"item": [
+				{
+					"name": "Listar Raças de uma Espécie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}Raca/ListarRacas/?especie=gato",
+							"host": [
+								"{{url}}Raca"
+							],
+							"path": [
+								"ListarRacas",
+								""
+							],
+							"query": [
+								{
+									"key": "especie",
+									"value": "gato",
+									"description": "Altere o VALUE entre Cachorro ou Gato"
+								}
+							]
+						},
+						"description": "Retorna as informações de todas as Raças da Espécie."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Imagem da Raça",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}Raca/BuscarImagemPorRaca?nomeRaca=Shiba Inu&especie=cachorro",
+							"host": [
+								"{{url}}Raca"
+							],
+							"path": [
+								"BuscarImagemPorRaca"
+							],
+							"query": [
+								{
+									"key": "nomeRaca",
+									"value": "Shiba Inu",
+									"description": "Altere o VALUE"
+								},
+								{
+									"key": "especie",
+									"value": "cachorro",
+									"description": "Alterne o VALUE entre gato e cachorro"
+								}
+							]
+						},
+						"description": "Retorna as informações de todas as Raças da Espécie."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Requisições de Agendamento",
+			"item": [
+				{
+					"name": "Criar Agendamento Manualmente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"servico\": \"string\",\r\n  \"descricao\": \"string\",\r\n  \"dataAgendamento\": \"2025-03-06T20:06:30.935Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}agendamento/CriarAgendamentoManual/?nomePet=&emailTutor=",
+							"host": [
+								"{{url}}agendamento"
+							],
+							"path": [
+								"CriarAgendamentoManual",
+								""
+							],
+							"query": [
+								{
+									"key": "nomePet",
+									"value": "",
+									"description": "Altere o VALUE"
+								},
+								{
+									"key": "emailTutor",
+									"value": "",
+									"description": "Altere o VALUE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Agendamento Manualmente Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"servico\": \"string\",\r\n  \"descricao\": \"string\",\r\n  \"dataAgendamento\": \"2025-03-06T20:12:53.521Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}agendamento/AtualizarAgendamento/?id=13",
+							"host": [
+								"{{url}}agendamento"
+							],
+							"path": [
+								"AtualizarAgendamento",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "13",
+									"description": "Altere o VALUE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Agendamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}agendamento/DeletarAgendamento/?id=9",
+							"host": [
+								"{{url}}agendamento"
+							],
+							"path": [
+								"DeletarAgendamento",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "9",
+									"description": "Altere o VALUE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Agendamento por Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}agendamento/ListarTodosAgendamentos"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todos Agendamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}agendamento/ListarAgendamentoPorEmail/?email=",
+							"host": [
+								"{{url}}agendamento"
+							],
+							"path": [
+								"ListarAgendamentoPorEmail",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "",
+									"description": "Altere o VALUE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Agendamentos por Servico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}agendamento/ListarAgendamentoPorServico/?servico",
+							"host": [
+								"{{url}}agendamento"
+							],
+							"path": [
+								"ListarAgendamentoPorServico",
+								""
+							],
+							"query": [
+								{
+									"key": "servico",
+									"value": null,
+									"description": "Altere o VALUE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Agendamento por Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}agendamento/ListarAgendamentoPorData/?data=2025-03-06",
+							"host": [
+								"{{url}}agendamento"
+							],
+							"path": [
+								"ListarAgendamentoPorData",
+								""
+							],
+							"query": [
+								{
+									"key": "data",
+									"value": "2025-03-06",
+									"description": "Altere o VALUE (ano - mes - dia)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5159/api/",
+			"type": "string"
+		}
+	]
+}

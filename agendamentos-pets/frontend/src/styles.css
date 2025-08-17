@@ -1,0 +1,117 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    /* background: linear-gradient(to bottom, #855BDE, #DE5B95, #9406E1); */
+    background: linear-gradient(to bottom, #855BDE, #B05BDE);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 40px 3%;
+    
+}
+
+*::selection {
+    color: rgb(195, 0, 255);
+    background-color: pink;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mensagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    border-radius: 5px;
+    
+}
+
+.sucesso {
+    color: green;
+    font-weight: bold;
+    background-color: #d4edda;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.info{
+    color: #0c5460;
+    font-weight: bold;
+    background-color: #d1ecf1;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.erro {
+    color: red;
+    font-weight: bold;
+    background-color: #f8d7da;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: right;
+    margin: 20px;
+}
+
+.pagination a, .pagination button {
+    padding: 10px 14px;
+    background-color: #855BDE; /* Roxo escuro */
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.pagination a:hover, .pagination button:hover {
+    transform: scale(1.1);
+}
+
+.pagination .current {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.pagination .disabled {
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+
+
+
+
+
+

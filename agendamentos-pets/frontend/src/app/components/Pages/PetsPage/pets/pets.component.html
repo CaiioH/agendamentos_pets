@@ -1,0 +1,67 @@
+<div class="container-maior">
+    <div class="filtro-container">
+        <div class="filtro-container-item">
+            <select [(ngModel)]="filtroSelecionado">
+                <option value="">Filtrar por...</option>
+                <option value="nome">Pet</option>
+                <option value="tutor">Tutor</option>
+                <option value="idade">Idade</option>
+                <option value="cor">Cor</option>
+                <option value="sexo">Gênero</option>
+                <option value="tipo">Espécie</option>
+                <option value="nomeRaca">Raça</option>
+            </select>
+            <input class="filtro-container-item" type="text" [(ngModel)]="valorFiltro" (input)="filtrarPets()"
+                placeholder="Digite o valor">
+
+            <button class="filtro-btn" (click)="limparFiltro()">Limpar Filtro</button>
+        </div>
+        <button class="btn-cadastrar" (click)="navigateToCadastro()">Cadastrar Pet</button>
+    </div>
+
+    @if (pets.length === 0 || petsFiltrados.length === 0) {
+    <div class="sem-pets">
+        <h1>Nenhum pet encontrado.</h1>
+    </div>
+    } @else {
+    <div class="list-cards">
+        <!-- paginação -->
+        @for (pet of petsFiltrados | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual }; track pet.id)
+        {
+        <div class="pet-card">
+            <div class="lixeira">
+                <button class="btn-lixeira" (click)="deletePet(pet.id)"><mat-icon>delete</mat-icon></button>
+            </div>
+            <div class="pet-card-content">
+                <img [src]="pet.imagemUrl" alt="Imagem de {{ pet.nome }}" class="pet-image" />
+                <div class="pet-info">
+                    <h3>{{ pet.nome }}</h3>
+                    <p><strong>Tutor:</strong> {{ pet.tutor }}</p>
+                    <p><strong>Raça:</strong> {{ pet.nomeRaca }}</p>
+
+                    @if (expandedPetId === pet.id) {
+                    <div class="expandido">
+                        <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
+                        <p><strong>Cor:</strong> {{ pet.cor }}</p>
+                        <p><strong>Gênero:</strong> {{ pet.sexo }}</p>
+                        <p><strong>Espécie:</strong> {{ pet.tipo }}</p>
+                        <p><strong>Email Tutor:</strong> {{ pet.emailTutor }}</p>
+                        <div class="btns">
+                            <button class="btn-editar" (click)="navigateToEdit(pet.id)">Editar</button>
+                        </div>
+                    </div>
+                    }
+                    <button class="mostrar-detalhes-btn" (click)="expandeDetalhe(pet.id)">
+                        {{ expandedPetId === pet.id ? '- Menos detalhes' : '+ Mais detalhes' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+    <!-- Controles de paginação -->
+    <pagination-controls class="pagination" 
+        (pageChange)="paginaAtual = $event"></pagination-controls>
+    }
+</div>

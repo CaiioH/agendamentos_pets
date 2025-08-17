@@ -1,0 +1,65 @@
+<div class="container-formulario">
+    <form #formPet="ngForm" (ngSubmit)="cadastrarPet(formPet)">
+        <div class="container-titulo">
+            <h1>Cadastro de <span>PET's</span></h1>
+        </div>
+        <h5>Dados do Tutor</h5>
+        <input type="text" name="tutorName" placeholder="Nome do Tutor:" required [(ngModel)]="pet.tutor"
+            #tutor="ngModel">
+        <input type="email" name="email" placeholder="E-mail:" required [(ngModel)]="pet.emailTutor" #email="ngModel">
+
+        <h5>Dados do Pet</h5>
+        <input type="text" name="petName" placeholder="Nome do Pet:" required [(ngModel)]="pet.nome" #nome="ngModel">
+        <input type="text" name="color" placeholder="Cor:" required [(ngModel)]="pet.cor" #cor="ngModel">
+        <select name="gender" required [(ngModel)]="pet.sexo" #genero="ngModel">
+            <option value="" disabled selected>Gênero:</option>
+            <option value="Macho">Masculino</option>
+            <option value="Fêmea">Feminino</option>
+        </select>
+        <input type="number" name="age" placeholder="Idade:" min="0" required [(ngModel)]="pet.idade" #idade="ngModel">
+        <select name="Espécie" required [(ngModel)]="pet.tipo" #especie="ngModel"
+            (change)="buscarRacas(especie.value)">
+            <option value="" disabled selected>Espécie:</option>
+            <option value="cachorro">Cachorro</option>
+            <option value="gato">Gato</option>
+            <!-- <option value="other">Outro</option> -->
+        </select>
+
+
+        <select name="breed" required [(ngModel)]="pet.nomeRaca" #raca="ngModel">
+            <option value="" disabled selected>Selecione a raça:</option>
+            @for(raca of racas; track raca.id) {
+            <option value="{{raca.name}}">{{raca.name}}</option>
+            }
+        </select>
+
+        <!-- <input type="text" name="breed" placeholder="Raça:" required [(ngModel)]="pet.raca" #raca="ngModel"> -->
+        <!-- Mensagem de erro/sucesso -->
+        <div class="mensagem">
+            @if (exibirMensagem) {
+
+                @if (sucesso) {
+                <div class="sucesso">
+                    {{ mensagem }}
+                </div>
+
+                } @else {
+                <div class="erro">
+                    {{ mensagem }}
+                </div>
+                }
+                
+            } @else {
+                <div class="info">
+                    Preencha todos os campos obrigatórios.
+                </div>
+            }
+
+        </div>
+
+        <div class="btns">
+            <input class="btn-enviar" type="submit" value="CADASTRAR">
+            <button class="btn-cancelar" (click)="navigateToPets()">CANCELAR</button>
+        </div>
+    </form>
+</div>

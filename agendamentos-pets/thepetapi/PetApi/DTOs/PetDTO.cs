@@ -1,0 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace PetApi.DTOs
+{
+    public class PetDTO
+    {
+        public string? Tutor { get; set; }
+        public string? EmailTutor { get; set; }
+        
+        public string? Nome { get; set; }
+        public string Cor { get; set; } = string.Empty;
+        public string? Sexo { get; set; }
+        public string? Idade { get; set; }
+        public string? Especie { get; set; }
+        public string? NomeRaca { get; set; }
+    }
+}

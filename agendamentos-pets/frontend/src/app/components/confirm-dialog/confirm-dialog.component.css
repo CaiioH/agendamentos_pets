@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    background-color: #9406E1;
+    border-radius: 5px;
+    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estiliza o título do diálogo */
+h2[mat-dialog-title] {
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+    background-color: #9406E1;
+    margin: 0;
+    padding: 10px;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* Estiliza o conteúdo do diálogo */
+mat-dialog-content {
+    font-size: 16px;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #9406E1;
+    margin: 0;
+    color: white;
+}
+
+p {
+    margin: 0;
+    color: white;
+}
+
+/* Estiliza a área dos botões */
+mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    background-color: #9406E1;
+    gap: 15px;
+    padding: 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Estiliza os botões */
+button[mat-button] {
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 14px;
+    color: white;
+}
+
+button[mat-button]:hover {
+    transform: scale(1.05);
+}
+
+/* Botão cancelar (tom neutro) */
+button[mat-button]:first-child {
+    background-color: #78797a; /* Cinza comum */
+}
+
+button[mat-button]:first-child:hover {
+    background-color: #a2a4a5;
+}
+
+/* Botão confirmar para exclusão (vermelho) */
+button[mat-button][color="warn"] {
+    background-color: #dc3545;
+}
+
+button[mat-button][color="warn"]:hover {
+    background-color: #c82333;
+}
+
+/* Botão confirmar para cancelamento (azul) */
+button[mat-button][color="accent"] {
+    background-color: #007bff; /* Azul padrão */
+}
+
+button[mat-button][color="accent"]:hover {
+    background-color: #0056b3;
+}
+
+/* Botão confirmar para ações comuns (verde) */
+button[mat-button][color="primary"] {
+    background-color: #28a745; /* Verde padrão */
+}
+
+button[mat-button][color="primary"]:hover {
+    background-color: #218838;
+}
+

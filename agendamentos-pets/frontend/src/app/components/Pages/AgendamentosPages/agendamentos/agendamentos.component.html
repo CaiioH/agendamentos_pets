@@ -1,0 +1,108 @@
+<div class="container-maior">
+    <div class="filtro-container">
+        <div class="filtro-container-item">
+            <select [(ngModel)]="filtroSelecionado">
+                <option value="">Filtrar por...</option>
+                <option value="servico">Serviço</option>
+                <option value="tutor">Tutor</option>
+                <option value="nomePet">Pet</option>
+                <option value="dataAgendamento">Agendamento</option>
+            </select>
+            <input class="filtro-container-item" type="text" [(ngModel)]="valorFiltro" (input)="filtrarAgendamentos()"
+                placeholder="Digite o valor">
+            <button class="filtro-btn" (click)="limparFiltro()">Limpar Filtro</button>
+        </div>
+        <button class="btn-cadastrar" (click)="navigateToCadastro()">Novo Agendamento</button>
+    </div>
+
+    @if (agendamentos.length === 0 || agendamentosFiltrados.length === 0) {
+    <div class="sem-agendamentos">
+        <h1>Nenhum agendamento encontrado.</h1>
+    </div>
+    } @else {
+    <ul class="lista-agendamentos">
+        @for (agendamento of agendamentosFiltrados | paginate: { itemsPerPage: itensPorPagina, currentPage: paginaAtual
+        }; track agendamento.id) {
+        <li class="agendamento-item">
+            <div class="nome-servico">
+                <h2>{{ agendamento.servico }}</h2>
+                <div class="btns">
+                    <button class="btn-editar"
+                        (click)="navigateToEdit(agendamento.id)"><mat-icon>edit_square</mat-icon></button>
+                    <button class="btn-lixeira"
+                        (click)="deleteAgendamento(agendamento.id)"><mat-icon>delete</mat-icon></button>
+                </div>
+            </div>
+            <ul class="nao-expandido">
+                <div class="card-info">
+                    <div class="card-info-agendamento">
+                        <li><strong>🐾 Pet:</strong>
+                            <span>
+                                {{ agendamento.nomePet }}
+                            </span>
+                        </li>
+                    </div>
+                    <div class="card-info-agendamento">
+                        <li><strong>👤 Tutor:</strong>
+                            <span>
+                                {{ agendamento.tutor }}
+                            </span>
+                        </li>
+                    </div>
+                    <li> <strong>✉️ Email:</strong>
+                        <span>
+                            {{ agendamento.emailTutor }}
+                        </span>
+                    </li>
+                </div>
+
+
+                <div class="info">
+
+                    <div class="info-agendamento">
+                        <li>
+                            <div class="data">
+                                <strong>🗓️ </strong>
+                                <span>
+                                    {{ agendamento.dataAgendamento | date: 'dd/MM/yyyy HH:mm'}}
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="data">
+                                <strong>🕒 </strong>
+                                <span>
+                                    {{ agendamento.dataCriacao | date: 'dd/MM/yyyy HH:mm'}}
+                                </span>
+                            </div>
+                        </li>
+                    </div>
+
+                </div>
+            </ul>
+
+            @if (expandedAgendaId === agendamento.id) {
+            <ul class="expandido">
+                <li>
+                    <div class="detalhes">
+                        <strong>📋 Observações:</strong>
+                        <span>
+                            {{ agendamento.descricao }}
+                        </span>
+                    </div>
+                </li>
+            </ul>
+            }
+            <div class="btn-detalhes">
+                <button class="mostrar-detalhes-btn" (click)="expandeDetalhe(agendamento.id)">
+                    {{ expandedAgendaId === agendamento.id ? '- Menos detalhes' : '+ Mais detalhes' }}
+                </button>
+            </div>
+        </li>
+        }
+    </ul>
+    <!-- Controles de paginação -->
+    <pagination-controls class="pagination"  
+        (pageChange)="paginaAtual = $event"></pagination-controls>
+    }
+</div>

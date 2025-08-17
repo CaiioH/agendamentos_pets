@@ -1,0 +1,55 @@
+<div class="container-maior">
+    <div class="container-formulario">
+        <div class="container-titulo">
+            <h1>Cadastro de <span>Agendamento</span></h1>
+        </div>
+        <form #formAgendamento="ngForm" (ngSubmit)="novoAgendamento(formAgendamento)" novalidate>
+            <select name="pet" required [(ngModel)]="agendamento.nomePet" #pet="ngModel" (click)="listPets()"
+                (change)="atualizarEmailTutor()">
+                <option value="" disabled selected>Selecione o Pet:</option>
+                @for(pet of pets; track pet.id) {
+                <option value="{{pet.nome}}">{{pet.nome}}</option>
+                }
+            </select>
+            <select name="servico" required [(ngModel)]="agendamento.servico" #servico="ngModel">
+                <option value="" disabled selected>Serviço:</option>
+                <option value="🚿 Banho">Banho</option>
+                <option value="✂️ Tosa">Tosa</option>
+                <option value="🐕‍🦺 Adestramento">Adestramento</option>
+                <option value="🩺 Consulta">Consulta</option>
+                <option value="💉 Vacina">Vacina</option>
+                <option value="🩹 Exame">Exame</option>
+                <option value="🩼 Cirurgia">Cirurgia</option>
+            </select>
+            <input type="datetime-local" name="dataAgendamento" required [(ngModel)]="agendamento.dataAgendamento"
+            #dataAgendamento="ngModel" [min]="minDate | date:'yyyy-MM-dd HH:mm'">    
+            <textarea name="descricao" required [(ngModel)]="agendamento.descricao" #descricao="ngModel"
+                placeholder="Observações"></textarea>
+                <div class="mensagem">
+                    @if (exibirMensagem) {
+                        
+                        @if (sucesso) {
+                            <div class="sucesso">
+                                {{ mensagem }}
+                            </div>
+                            
+                        } @else {
+                            <div class="erro">
+                                {{ mensagem }}
+                            </div>
+                        }
+                        
+                    } @else {
+                        <div class="info">
+                            Preencha todos os campos obrigatórios.
+                        </div>
+                    }
+                    
+                </div>
+                <div class="btns">
+                    <input class="btn-enviar" type="submit" value="CADASTRAR">
+                    <button class="btn-cancelar" (click)="navigateToAgendamentos()">CANCELAR</button>
+                </div>
+            </form>
+    </div>
+</div>

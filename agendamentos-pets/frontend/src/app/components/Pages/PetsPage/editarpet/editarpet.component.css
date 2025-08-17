@@ -1,0 +1,83 @@
+/* Container principal */
+.container{
+    /* border: 1px solid red; */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    width: 100%;
+    max-width: 500px;
+    /* border: 1px solid #ccc; */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top, #5B5CDE, #985bde, #9f5bde, #8d5bde);
+}
+
+/* Título */
+.container h2 {
+    color: #fff;
+}
+
+/* Campos de entrada */
+mat-form-field {
+    width: 100%;
+    border-radius: 5px;
+}
+
+mat-label, mat-select {
+    color: #855BDE;
+}
+
+/* Botões */
+.form-actions {
+    display: flex;
+    gap: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+}
+
+button[type="submit"] {
+    background-color: green;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: darkgreen;
+}
+
+button[type="button"] {
+    background-color: red;
+    color: white;
+}
+
+button[type="button"]:hover {
+    background-color: darkred;
+}
+
+/* Mensagem de carregamento */
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+}

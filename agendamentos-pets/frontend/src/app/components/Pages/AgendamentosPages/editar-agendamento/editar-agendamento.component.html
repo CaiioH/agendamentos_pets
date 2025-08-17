@@ -1,0 +1,50 @@
+@if (agendamentoSelecionado) {
+    <div class="container">
+        <form [formGroup]="agendamentoForm" (ngSubmit)="atualizarAgendamento()">
+            <div class="container-titulo">
+                <h1>Editar <span>Agendamento</span></h1>
+            </div>
+    
+            <mat-form-field>
+                <mat-label>Serviço</mat-label>
+                <mat-select formControlName="servico" required>
+                    <mat-option value="Banho">Banho</mat-option>
+                    <mat-option value="Tosa">Tosa</mat-option>
+                    <mat-option value="Consulta">Consulta</mat-option>
+                    <mat-option value="Cirurgia">Cirurgia</mat-option>
+                    <mat-option value="Adestramento">Adestramento</mat-option>
+                    <mat-option value="Vacina">Vacina</mat-option>
+                </mat-select>
+                @if (agendamentoForm.controls['servico'].invalid && agendamentoForm.controls['servico'].touched) {
+                <mat-error>O nome do serviço é obrigatório.</mat-error>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Descrição</mat-label>
+                <input matInput formControlName="descricao" required />
+                @if (agendamentoForm.controls['descricao'].invalid && agendamentoForm.controls['descricao'].touched) {
+                <mat-error>A descrição é obrigatória.</mat-error>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Selecione a data</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dataAgendamento" [min]="minDate" required />
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                @if (agendamentoForm.controls['dataAgendamento'].invalid && agendamentoForm.controls['dataAgendamento'].touched) {
+                <mat-error>A Data de Agendamento é obrigatória.</mat-error>
+                }
+            </mat-form-field>
+    
+            <div class="form-actions">
+                <button mat-button type="button" (click)="fecharFormulario()">Cancelar</button>
+                <button mat-button color="primary" type="submit">Salvar</button>
+            </div>
+        </form>
+    </div>
+    } @else {
+    <p>Carregando dados do agendamento...</p>
+    }
+    

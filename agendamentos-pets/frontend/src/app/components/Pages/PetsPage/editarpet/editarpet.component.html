@@ -1,0 +1,84 @@
+@if (petSelecionado) {
+    <div class="container">
+        <form [formGroup]="petForm" (ngSubmit)="atualizarPet()">            
+            <div class="container-titulo">
+                <h1>Editar <span>Pet</span></h1>
+            </div>
+        
+            <!-- Dados do Tutor -->
+            <mat-form-field>
+                <input matInput placeholder="Tutor" formControlName="tutor" required />
+                @if (petForm.get('tutor')?.invalid && petForm.get('tutor')?.touched) {
+                    <mat-error>O nome do tutor é obrigatório.</mat-error>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <input matInput placeholder="Email do Tutor" formControlName="emailTutor" required />
+                @if (petForm.get('emailTutor')?.invalid && petForm.get('emailTutor')?.touched) {
+                    <mat-error>Digite um e-mail válido.</mat-error>
+                }
+            </mat-form-field>
+    
+            <!-- Dados do Pet -->
+            <mat-form-field>
+                <input matInput placeholder="Nome" formControlName="nome" required />
+                @if (petForm.get('nome')?.invalid && petForm.get('nome')?.touched) {
+                    <mat-error>O nome do pet é obrigatório.</mat-error>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <input matInput placeholder="Raça" formControlName="nomeRaca" required />
+                @if (petForm.get('nomeRaca')?.invalid && petForm.get('nomeRaca')?.touched) {
+                    <mat-error>A raça é obrigatória.</mat-error>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <input matInput placeholder="Idade" type="number" formControlName="idade" min="0" required />
+                @if (petForm.get('idade')?.invalid && petForm.get('idade')?.touched) {
+                    <mat-error>A idade é obrigatória e deve ser um número positivo.</mat-error>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <input matInput placeholder="Cor" formControlName="cor" required />
+                @if (petForm.get('cor')?.invalid && petForm.get('cor')?.touched) {
+                    <mat-error>A cor é obrigatória.</mat-error>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Gênero</mat-label>
+                <mat-select formControlName="sexo" required>
+                    <mat-option value="" disabled>Selecione o gênero</mat-option>
+                    <mat-option value="Macho">Macho</mat-option>
+                    <mat-option value="Fêmea">Fêmea</mat-option>
+                </mat-select>
+                @if (petForm.get('sexo')?.invalid && petForm.get('sexo')?.touched) {
+                    <mat-error>O gênero é obrigatório.</mat-error>
+                }
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Espécie</mat-label>
+                <mat-select formControlName="especie" required>
+                    <mat-option value="" disabled>Selecione a espécie</mat-option>
+                    <mat-option value="CACHORRO">Cachorro</mat-option>
+                    <mat-option value="GATO">Gato</mat-option>
+                </mat-select>
+                @if (petForm.get('especie')?.invalid && petForm.get('especie')?.touched) {
+                    <mat-error>A espécie é obrigatória.</mat-error>
+                }
+            </mat-form-field>
+    
+            <div class="form-actions">
+                <button mat-button type="button" (click)="fecharFormulario()">Cancelar</button>
+                <button mat-button color="primary" type="submit" >Salvar</button>
+            </div>
+        </form>
+    </div>
+    } @else {
+    <p>Carregando dados do pet...</p>
+    }

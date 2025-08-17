@@ -1,0 +1,18 @@
+# Etapa de build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /app
+
+# Copia o arquivo de projeto e restaura as dependências
+COPY ["AgendaApi.csproj", "./"]
+RUN dotnet restore
+
+# Copia todo o código e compila
+COPY . .
+RUN dotnet publish -c Release -o /publish
+
+# Etapa de runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
+WORKDIR /app
+COPY --from=build /publish .
+EXPOSE 5078
+ENTRYPOINT ["dotnet", "AgendaApi.dll"]

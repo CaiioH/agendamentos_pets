@@ -1,0 +1,122 @@
+version: "3.8"
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: petdb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+
+  apigateway:
+    container_name: apigateway
+    build: ./thepetapi/ApiGateway
+    restart: always
+    ports:
+      - "5159:8080"
+    depends_on:
+      petapi:
+        condition: service_started
+      agendaapi:
+        condition: service_started
+      notifications:
+        condition: service_started
+    networks:
+      - app-network
+    
+
+  petapi:
+    container_name: petapi
+    build: ./thepetapi/PetApi
+    restart: always
+    depends_on:
+      mysql:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mysql;Database=petdb;User=root;Password=root;
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5239:8080"
+    networks:
+      - app-network
+    command: ["wait-for-it", "-t", "60", "rabbitmq:5672", "--", "dotnet", "PetApi.dll"]  # Aguarda o RabbitMQ estar pronto
+
+  agendaapi:
+    container_name: agendaapi
+    build: ./thepetapi/AgendaApi
+    restart: always
+    depends_on:
+      mysql:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mysql;Database=petagenda_db;User=root;Password=root;
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5078:8080"
+    networks:
+      - app-network
+    command: ["wait-for-it", "-t", "60", "rabbitmq:5672", "--", "dotnet", "AgendaApi.dll"]  # Aguarda o RabbitMQ estar pronto
+
+
+  notifications:
+    container_name: notifications
+    build: ./thepetapi/Notifications
+    restart: always
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMQ__HostName=rabbitmq
+    ports:
+      - "5109:8080"
+    networks:
+      - app-network
+    command: ["wait-for-it", "-t", "60", "rabbitmq:5672", "--", "dotnet", "Notifications.dll"]  # Aguarda o RabbitMQ estar pronto
+
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    restart: always
+    ports:
+      - "4200:80"
+    depends_on:
+      apigateway:
+        condition: service_started
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:
+    driver: bridge
